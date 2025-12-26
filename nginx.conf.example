@@ -7,16 +7,6 @@
 #   (bypass nginx completely for uploads)
 
 # Upstream definitions
-upstream seaweedfs_master {
-    server 10.0.1.10:9333;
-    keepalive 32;
-}
-
-upstream seaweedfs_volume {
-    server 10.0.1.10:8080;
-    keepalive 32;
-}
-
 upstream seaweedfs_filer {
     server 10.0.1.10:8888;
     keepalive 64;
