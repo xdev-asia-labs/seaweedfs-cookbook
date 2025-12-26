@@ -27,29 +27,6 @@ upstream seaweedfs_s3 {
     keepalive 64;
 }
 
-# Master UI (Admin only - optional)
-server {
-    listen 80;
-    server_name master.yourdomain.com;
-
-    # Optional: Basic auth for security
-    # auth_basic "Restricted Access";
-    # auth_basic_user_file /etc/nginx/.htpasswd;
-
-    location / {
-        proxy_pass http://seaweedfs_master;
-        proxy_http_version 1.1;
-        proxy_set_header Connection "";
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        
-        # CORS headers if needed
-        # add_header Access-Control-Allow-Origin *;
-    }
-}
-
 # Filer - File System Interface (Read-Only via Public Nginx)
 server {
     listen 80;
